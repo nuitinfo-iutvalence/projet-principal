@@ -1,5 +1,5 @@
 from django.contrib import admin
-from APIHandler.models import Produit
+from APIHandler.models import Product
 
-admin.site.register(Produit)
+admin.site.register(Product)
 # Register your models here.
