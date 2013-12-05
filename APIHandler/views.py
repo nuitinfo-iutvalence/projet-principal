@@ -3,7 +3,6 @@ from django.utils import simplejson
 
 
 
-# Create your views here.
 def item(request):
     some_data_to_dump = {
        'id': '1',
