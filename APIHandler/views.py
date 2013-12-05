@@ -6,8 +6,8 @@ from django.utils import simplejson
 # Create your views here.
 def item(request):
     some_data_to_dump = {
-       'id': 'foo',
-       'nom': 'bar',
+       'id': '1',
+       'nom': 'Produit1',
        'carac0': 'carac0',
        'carac1': 'carac1',
        'carac2': 'carac2',
