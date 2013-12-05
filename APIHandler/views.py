@@ -21,4 +21,5 @@ def item(request):
     }
     
     data = simplejson.dumps(some_data_to_dump)
-    return HttpResponse(data, mimetype='application/json')
+    return HttpResponse("test")
+    #return HttpResponse(data, mimetype='application/json')
