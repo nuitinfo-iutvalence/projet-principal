@@ -3,23 +3,16 @@ from django.db import models
 #---------------------------------------------#
 # Notes : 
 # Status : 
-# Test :
-class Produit(models.Model):
-    nom = models.CharField(max_length=200)
-    prix = models.IntegerField()
+# Test :   
+class Caracteristic(models.Model):
+    label = models.CharField(max_length=200)
 
 #---------------------------------------------#
 # Notes : 
 # Status : 
-# Test :   
-class Caracteristique(models.Model):
-    libelle = models.CharField(max_length=200)
-    
-#---------------------------------------------#
-# Notes : 
-# Status : 
 # Test :
-class Possede(models.Model):
-    produitID  = models.ForeignKey(Produit)
-    caracteristiqueID = models.ForeignKey(Caracteristique)    
-    
+class Product(models.Model):
+    name = models.CharField(max_length=200)
+    price = models.IntegerField()
+    caracteristics = models.ManyToManyField(Caracteristic,
+                                            related_name='products')
