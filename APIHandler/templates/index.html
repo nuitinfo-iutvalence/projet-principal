@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>Document sans nom</title>
+<title>Mes articles</title>
 <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
 <script type="text/javascript" src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
 <script type="text/javascript">
@@ -18,8 +18,8 @@ $(document).on("click", ".article", function() {
 	$(".selected_article_container").switchClass("selected_article_container", "article_container_shifted", 700, "easeOutBack");
 	$(".articles_list_container_displayed").switchClass("articles_list_container_displayed", "articles_list_container_shifted", 700, "easeOutBack");
 	i = $(this).attr("id");
-	$('.big_article_title').html(article[i].fields["name"]);
-	$('.big_article_pic').css('background-image', 'url('+article[i].fields["picture"]+')');
+	$('.big_article_title').html(article[i].name);
+	$('.big_article_pic').css('background-image', 'url('+article[i].picture+')');
 	
 });
 $(document).on("click", ".articles_side_container", function() {
@@ -47,15 +47,15 @@ $(document).ready(function () {
 			{
 				article = JSON.parse(req.responseText);
 				for (i=0; i<article.length;i++)
-						    $('.articles_list_container_displayed').append('<div id="'+i+'" class="article"><div class="article_pic" style="background-image:url('+article[i].fields["picture"]+');"></div><div class="article_descr">'+article[i].fields["name"]+'<div class="article_price">'+article[i].fields["price"]+'€</div></div>');
+						    $('.articles_list_container_displayed').append('<div id="'+i+'" class="article"><div class="article_pic" style="background-image:url('+article[i].picture+');"></div><div class="article_descr">'+article[i].name+'<div class="article_price">'+article[i].price+'€</div></div>');
 						    
 				for (i=0; i<4;i++)
-						    $('.articles_side_container').append('<div class="article_side"style="background-image:url('+article[i].fields["picture"]+');"></div>');
+						    $('.articles_side_container').append('<div class="article_side"style="background-image:url('+article[i].picture+');"></div>');
 			} 
 		} 
 	};
 	
-	req.open("GET", "/search/?q=i", true); 
+	req.open("GET", "/search/?q=", true); 
 	req.send(null); 
 	
 				
