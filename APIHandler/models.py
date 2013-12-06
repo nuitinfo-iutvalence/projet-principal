@@ -26,6 +26,3 @@ class Product(models.Model):
 class User(models.Model):
     name = models.CharField(max_length=80)
     boughtProducts = models.ManyToManyField(Product,related_name='User')
-    
-
-    
