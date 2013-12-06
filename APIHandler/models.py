@@ -1,5 +1,5 @@
 from django.db import models
-from django.core.serializers.json import Serializer
+from django.core import serializers
 
 #-----------------------------------------------------------------------------#
 # Notes : Abstract class, used to give methods for subclasses
@@ -13,7 +13,7 @@ class JSONModel(models.Model):
     # Test :
     #//TODO: finish the documentation
     def to_json(self):
-        return Serializer.serialize("json", self)
+        return serializers.serialize('json', [self])
     
     # Used to prevent django to interprete this object as a table, aso...
     class Meta:
@@ -26,7 +26,7 @@ class JSONModel(models.Model):
 class Caracteristic(JSONModel):
     label = models.CharField(max_length=200)
     value = models.CharField(max_length=200)
-    
+
 #-----------------------------------------------------------------------------#
 # Notes : Category Class
 # Status : 
@@ -34,7 +34,8 @@ class Caracteristic(JSONModel):
 #//TODO: finish the documentation
 class Category(JSONModel):
     name = models.CharField(max_length=80)
-    parent_category = models.ForeignKey('self')
+    parent_category = models.ForeignKey('self', null=True, blank=True) 
+    #Null and blank are merely equal but at different level
     
 #-----------------------------------------------------------------------------#
 # Notes : Product Class
