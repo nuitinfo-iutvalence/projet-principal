@@ -27,8 +27,9 @@ class Caracteristic(JSONModel):
     value = models.CharField(max_length=200)
     
     def to_dict(self):
-        return {'nom' : self.label,
-                'valeur' : self.valeur
+        return {'pk':self.pk,
+                'nom' : self.label,
+                'valeur' : self.value
                 }
     
 #-----------------------------------------------------------------------------#
@@ -42,7 +43,8 @@ class Category(JSONModel):
     #Null and blank are merely equal but at different level
     
     def to_dict(self):
-        return {'nom':self.name,
+        return {'pk':self.pk,
+                'nom':self.name,
                 'categorie_parent':self.parent_category
                 }
     
@@ -85,6 +87,7 @@ class User(JSONModel):
     boughtProducts = models.ManyToManyField(Product,related_name='User')
     
     def to_dict(self):
-        return {'nom':self.name,
+        return {'pk':self.pk,
+                'nom':self.name,
                 'produits_achetes':[p.to_dict() for p in self.boughtProducts.all()]
-                }
+               }
