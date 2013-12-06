@@ -1,4 +1,5 @@
 from django.http.response import HttpResponse
+import json
 from django.http import Http404
 
 from APIHandler.models import Product
@@ -15,9 +16,9 @@ def send_product(request, pk):
         product = Product.objects.get(pk=pk)
     except Product.DoesNotExist:
         raise Http404
-    jsonData = product.to_json()    
+    jsonData = product.to_dict()    
     
-    return HttpResponse(jsonData, mimetype='application/json')
+    return HttpResponse(json.dumps(jsonData), mimetype='application/json')
 
 def send_category(request, pk):
     
@@ -25,6 +26,6 @@ def send_category(request, pk):
         category = Category.objects.get(pk=pk)
     except Category.DoesNotExist:
         raise Http404    
-    jsonData = category.to_json()
+    jsonData = category.to_dict()
     
-    return HttpResponse(jsonData, mimetype='application/json')
+    return HttpResponse(json.dumps(jsonData), mimetype='application/json')
