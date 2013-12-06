@@ -1,8 +1,3 @@
-<<<<<<< HEAD
-=======
-from django.http.response import HttpResponse
-import json
->>>>>>> branch 'master' of https://github.com/nuitinfo-iutvalence/projet-principal.git
 from django.http import Http404
 from django.http.response import HttpResponse
 import json
