@@ -9,7 +9,7 @@ from APIHandler.models import Caracteristic, Category, Product
 # Notes : Function sending the json's product
 # Status : 
 # Test :
-#//TODO: finish the documentation
+# //TODO: finish the documentation
 def send_product(request, pk): 
     
     try : 
@@ -30,12 +30,14 @@ def send_category(request, pk):
     return HttpResponse(jsonData, mimetype='application/json')
 
 def answer_search(request):
-    q = request.GET['q']
+    q = request.GET['q'].lower()
     keywords = q.split()
     
-    prod_found = Product.objects.filter(name__in=keywords)
+    qs = Product.objects.all()
+    for kw in keywords:
+        qs = qs.filter(name__contains=kw)
         
-    data = [p.to_dict() for p in prod_found]
+    data = [p.to_dict() for p in qs]
         
     return HttpResponse(json.dumps(data), mimetype='application/json')
 
