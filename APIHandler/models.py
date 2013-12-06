@@ -7,6 +7,7 @@ from django.db import models
 class Caracteristic(models.Model):
     label = models.CharField(max_length=200)
     value = models.CharField(max_length=200)
+    
 
 #-----------------------------------------------------------------------------#
 # Notes : Product Class
@@ -18,6 +19,7 @@ class Product(models.Model):
     price = models.IntegerField()
     caracteristics = models.ManyToManyField(Caracteristic,
                                             related_name='products')
+    picture = models.ImageField(upload_to='pictures')
 #-----------------------------------------------------------------------------#
 # Notes : User class
 # Status : 
@@ -26,3 +28,5 @@ class Product(models.Model):
 class User(models.Model):
     name = models.CharField(max_length=80)
     boughtProducts = models.ManyToManyField(Product,related_name='User')
+
+    
