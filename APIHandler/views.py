@@ -1,3 +1,8 @@
+<<<<<<< HEAD
+=======
+from django.http.response import HttpResponse
+import json
+>>>>>>> branch 'master' of https://github.com/nuitinfo-iutvalence/projet-principal.git
 from django.http import Http404
 from django.http.response import HttpResponse
 import json
@@ -16,9 +21,9 @@ def send_product(request, pk):
         product = Product.objects.get(pk=pk)
     except Product.DoesNotExist:
         raise Http404
-    jsonData = product.to_json()    
+    jsonData = product.to_dict()    
     
-    return HttpResponse(jsonData, mimetype='application/json')
+    return HttpResponse(json.dumps(jsonData), mimetype='application/json')
 
 def send_category(request, pk):
     
@@ -26,8 +31,7 @@ def send_category(request, pk):
         category = Category.objects.get(pk=pk)
     except Category.DoesNotExist:
         raise Http404    
-    jsonData = category.to_json()
-    
+    jsonData = category.to_dict()
     return HttpResponse(jsonData, mimetype='application/json')
 
 def answer_search(request):
@@ -39,17 +43,4 @@ def answer_search(request):
     data = [p.to_dict() for p in prod_found]
         
     return HttpResponse(json.dumps(data), mimetype='application/json')
-        
-        
-            
-        
-        
-        
-    
-    
-    
-    
-    
-    
-    
-    
+
