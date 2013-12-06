@@ -1,14 +1,31 @@
-from django.core import serializers
 from django.http.response import HttpResponse
-from django.utils import simplejson
+from django.core import serializers
+from django.http import Http404
 
 from APIHandler.models import Product
+from APIHandler.models import Category 
 
-
-def item(request):
-   
-
-    data = serializers.serialize("json", Product.objects.all())
+#-----------------------------------------------------------------------------#
+# Notes : Function sending the json's product
+# Status : 
+# Test :
+#//TODO: finish the documentation
+def send_product(request, pk): 
     
+    try : 
+        product = Product.objects.get(Product, pk=pk)
+    except Product.DoesNotExist:
+        raise Http404
+    jsonData = serializers.serialize("json", product)    
     
-    return HttpResponse(data, mimetype='application/json')
+    return HttpResponse(jsonData, mimetype='application/json')
+
+def send_category(request, pk):
+    
+    try : 
+        category = Product.objects.get(Category, pk=pk)
+    except Category.DoesNotExist:
+        raise Http404    
+    jsonData = serializers.serialize("json", category)
+    
+    return HttpResponse(jsonData, mimetype='application/json')
