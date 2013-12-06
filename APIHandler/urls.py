@@ -7,4 +7,5 @@ urlpatterns = patterns('',
     url(r'^category/(?P<pk>\d+)/$', views.send_category, name='category_detail'),
     #[^/] every char unless '/', 
     url(r'^product/(?P<pk>\d+)/$', views.send_product, name='product_detail')    
+    url(r'^search/$', views.send_product, name='search_detail')    
 )

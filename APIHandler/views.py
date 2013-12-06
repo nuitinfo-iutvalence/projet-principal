@@ -1,9 +1,9 @@
+from django.http import Http404
 from django.http.response import HttpResponse
 import json
-from django.http import Http404
 
-from APIHandler.models import Product
-from APIHandler.models import Category 
+from APIHandler.models import Caracteristic, Category, Product
+
 
 #-----------------------------------------------------------------------------#
 # Notes : Function sending the json's product
@@ -27,5 +27,15 @@ def send_category(request, pk):
     except Category.DoesNotExist:
         raise Http404    
     jsonData = category.to_dict()
+    return HttpResponse(jsonData, mimetype='application/json')
+
+def answer_search(request):
+    q = request.GET['q']
+    keywords = q.split()
     
-    return HttpResponse(json.dumps(jsonData), mimetype='application/json')
+    prod_found = Product.objects.filter(name__in=keywords)
+        
+    data = [p.to_dict() for p in prod_found]
+        
+    return HttpResponse(json.dumps(data), mimetype='application/json')
+
